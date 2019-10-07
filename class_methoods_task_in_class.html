@@ -1,0 +1,66 @@
+<!-- class method and static methood are usually same in javasctript -->
+<!DOCTYPE html>
+<html>
+<body>
+
+<script>
+class Student {
+  constructor(name,fname,age) {
+    this.name = name;
+    this.fname=fname;
+    this.age=age;
+  }
+  get Stu_set_nam() {
+    return this.name;
+  }
+  set Stu_set_nam(x) {
+    this.name = x;
+    
+  }
+}
+
+class mgmtStudent extends Student {
+    constructor(indus_name,name,fname,age) {
+        super(name,fname,age);
+        this.indus_name = indus_name;
+      }
+      get Stu_get_nam() {
+        return [this.indus_name];
+      }
+      set Stu_set_nam(x) {
+        this.indus_name=x;
+      }
+
+  }
+
+  class csStudent extends Student {
+    constructor(fypTitle,name,fname,age) {
+        super(name,fname,age);
+        this.fypTitle = fypTitle;
+      }
+
+      get Stu_get_nam() {
+        return this.fypTitle;
+      }
+      set Stu_set_nam(x) {
+        this.fypTitle=x;
+      }
+  }
+
+stu1 = new Student("Mubeen khan","Javaid iqbal khan",23);
+console.log(stu1);
+
+stu_mgmt = new mgmtStudent("IT Industries","Noman Marwat","Rehm Dil Khan",24)
+console.log(stu_mgmt);
+
+stu_cs = new csStudent("CVD Detection","iqra atta","Dr Atta Ullah",20)
+console.log(stu_cs);
+
+stu1.Stu_set_nam="noman ejaz";
+//console.log(stu1.Stu_get_nam);
+console.log(stu1);
+
+</script>
+
+</body>
+</html>
