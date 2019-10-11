@@ -1,0 +1,72 @@
+<!-- class method and static methood are usually same in javasctript -->
+<!DOCTYPE html>
+<html>
+<body>
+<script>
+
+
+class car{
+    constructor (c_name,model,color){
+        this.c_name=c_name;
+        this.model=model;
+        this.color=color;
+    }
+    show_car_atributes(){
+        console.log("Company name is"+this.c_name+"and Model is"+this.model+"and color is"+this.color);
+    }
+}
+class toyota extends car{
+    constructor(c_name,model,color,price,feature){
+        super(c_name,model,color)
+        this.price=price;
+        this.feature=feature;
+    }
+    show_toyota_atributes(){
+        console.log("Company name is"+this.c_name+"and Model is"+this.model+"and color is"+this.color+"and price is"+this.price+"and feature is"+this.feature);
+    }
+}
+class mercedez extends toyota{
+    constructor(c_name,model,color,price,feature,series,country){
+        super(c_name,model,color,price,feature)
+        this.series=series;
+        this.country=country;
+    }
+    show_mercedez_atributes(){
+        console.log("Company: "+this.c_name+"\nModel: "+this.model+"\nColor: "+this.color+"\nPrice: "+this.price+"\nFeature: "+this.feature+"\nSeries: "+this.series+"\nCountry: "+this.country);
+    }
+
+}
+function show(){
+    mercedez = new mercedez("Mercedez",2020,"Black","800k","Automatic","7th","China");
+    document.getElementById("company").value = mercedez.c_name;
+    document.getElementById("model").value = mercedez.model;
+    document.getElementById("color").value = mercedez.color;
+    document.getElementById("price").value = mercedez.price;
+    document.getElementById("type").value = mercedez.feature;
+    document.getElementById("series").value = mercedez.series;
+    document.getElementById("ai").value = mercedez.country;
+}
+   
+
+
+
+</script>
+
+<label for="company">Company</label>
+<input type="text" name="" id="company"> <br>
+<label for="model">Model</label>
+<input type="text" name="" id="model"><br>
+<label for="color">Color</label>
+<input type="text" name="" id="color"><br>
+<label for="price">Price</label>
+<input type="text" name="" id="price"><br>
+<label for="type">Type</label>
+<input type="text" name="" id="type"><br>
+<label for="series">Series</label>
+<input type="text" name="" id="series"><br>
+<label for="ai">Assembled in</label>
+<input type="text" name="" id="ai"><br>
+<button onclick="show()">Show details</button>
+
+</body>
+</html>
