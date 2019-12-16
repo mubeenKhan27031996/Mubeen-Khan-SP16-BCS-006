@@ -212,12 +212,18 @@
 
 
 import React, { Component } from "react";
-import { View, Text, ScrollView, StyleSheet, TextInput } from "react-native";
-export default class Login extends Component {
+import { View, Text, ScrollView, StyleSheet, TextInput,Button } from "react-native";
+import {createStackNavigator} from 'react-navigation-stack';
+import { createAppContainer } from "react-navigation";
+class Login extends Component {
   constructor(props) {
     super(props);
-    this.state = { username: " " };
+    // this.state = { Email: " " };
+    // this.state = { Password: " " };
+    // this.state = { Name: " " };
   }
+      
+
   render() {
     return (
       <View style={{ flex: 1, flexDirection: "column" }}>
@@ -233,8 +239,13 @@ export default class Login extends Component {
             <View style={{ flex: 2, backgroundColor: "pink" }}></View>
           </View>
           <View style={{ flex: 4, flexDirection: "column", backgroundColor: "red", justifyContent: "space-around" }}>
-            <TextInput style={{ backgroundColor: "white" }} placeholder="Enter Username" onChangeText={(username) => this.setState({ username })} />
-            <Text style={{ color: "white", textAlign: "center" }}>Welcome to {this.state.username}</Text>
+            <TextInput autoFocus={true} style={{ backgroundColor: "white" }} placeholder="Enter Email" onChangeText={(Email) => this.setState({ Email })} />
+            <TextInput secureTextEntry={true} style={{ backgroundColor: "white" }} placeholder="Enter Password" onChangeText={(Password) => this.setState({ Password })} />
+            <TextInput style={{ backgroundColor: "white" }} placeholder="Enter Name" onChangeText={(Name) => this.setState({ Name })} />
+            <Button title="click me" onPress={() =>this.props.navigation.navigate('register')}></Button>
+           
+
+            
           </View>
         </View>
         <View style={{ flex: 2, flexDirection: "row", justifyContent: "center", alignItems: "center" }}>
@@ -245,10 +256,48 @@ export default class Login extends Component {
   }
 }
 
-
-export function Username(props) {
-  return <TextInput value={props.username} style={{ color: props.colorName }} />;
+class register extends Component{
+  render(){
+    return <Text>wellcome to login page</Text>
+  }
 }
+
+class tryy extends Component{
+  render(){
+    return <Text>try again !!!Error</Text>
+  }
+}
+registerUser = () => {
+  if (this.state.Email == '') {
+    this.props.navigation.navigate('tryy');
+    return;
+  }
+  if (this.state.Password == '') {
+    this.props.navigation.navigate('tryy');
+    return;
+  }
+  if (this.state.Name == '') {
+    this.props.navigation.navigate('tryy');
+    return;
+  }
+  this.props.navigation.navigate('register', {
+    Email: this.state.Email,
+    Password: this.state.Password,
+    Name: this.state.Name
+  });
+
+}
+const navigationApp=createStackNavigator({
+  Login:Login,
+  register:register,
+  tryy:tryy,
+
+
+},
+{ initialRouteName: 'Login' }
+);
+const appcontainer=createAppContainer(navigationApp);
+export default appcontainer
 
 const styles = StyleSheet.create({
   textInputStyle: {
